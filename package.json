@@ -1,0 +1,14 @@
+{
+  "name": "@reset-beer/mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Reset Beer — AI quota reset tracking",
+  "main": "index.js",
+  "type": "module",
+  "bin": { "reset-beer-mcp": "./index.js" },
+  "keywords": ["mcp", "ai", "quota", "reset", "openai", "claude", "gemini", "cursor"],
+  "license": "MIT",
+  "repository": {
+    "type": "url",
+    "url": "https://github.com/reset-beer/mcp-server"
+  }
+}
