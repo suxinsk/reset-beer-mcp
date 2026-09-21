@@ -1,20 +1,19 @@
-# Reset Beer MCP Server
+# @reset-beer/mcp
 
-> MCP (Model Context Protocol) server for [Reset Beer](https://reset.beer) — AI quota reset tracking.
+> MCP (Model Context Protocol) server for [Reset Beer](https://reset.beer) — AI quota reset tracking across 15+ products.
 
 Query AI quota reset signals directly from Claude, Cursor, or any MCP-compatible AI assistant.
 
-## Setup
+## Quick Start
 
-1. Get your API key at [reset.beer/account](https://reset.beer/en-US/account) (Pro required)
-2. Set the environment variable:
 ```bash
+npm install -g @reset-beer/mcp
 export RESET_BEER_API_KEY="rb_your_key_here"
+reset-beer-mcp resets
 ```
 
-3. Add to your MCP client config:
+## Claude Desktop Config
 
-### Claude Desktop
 ```json
 {
   "mcpServers": {
@@ -27,7 +26,8 @@ export RESET_BEER_API_KEY="rb_your_key_here"
 }
 ```
 
-### Cursor
+## Cursor Config
+
 Add to `.cursor/mcp.json`:
 ```json
 {
@@ -44,18 +44,19 @@ Add to `.cursor/mcp.json`:
 
 | Tool | Description |
 |------|-------------|
-| `list_recent_resets` | List recent AI quota reset events (filter by hours, product, limit) |
-| `get_product_status` | Get the latest reset event for a specific product |
-| `list_products` | List all 15+ tracked AI products |
+| `list_recent_resets` | List recent AI quota reset events |
+| `get_product_status` | Get latest reset event for a product |
+| `list_products` | List all tracked AI products |
 
 ## Supported Products
 
-OpenAI Codex, ChatGPT Work, Claude/Claude Code, Google Gemini, xAI Grok, DeepSeek, Kimi/Moonshot, Alibaba Qwen, Zhipu GLM, Volcengine Ark/Doubao, OpenRouter, Cursor, MiniMax, Tencent Hunyuan, Baidu Qianfan
+OpenAI Codex, ChatGPT Work, Claude/Claude Code, Google Gemini, xAI Grok, DeepSeek, Kimi/Moonshot, Alibaba Qwen, Zhipu GLM, Volcengine Ark, OpenRouter, Cursor, MiniMax, Tencent Hunyuan, Baidu Qianfan
 
-## Pricing
+## Get an API Key
 
-- **Free**: Daily digest email
-- **Pro**: $9.99 one-time — near-realtime alerts + MCP access
+1. Sign up at [reset.beer](https://reset.beer)
+2. Upgrade to Pro ($9.99 one-time, lifetime access)
+3. Generate key at [reset.beer/account](https://reset.beer/en-US/account)
 
 ## License
 
