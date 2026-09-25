@@ -85,7 +85,7 @@ async function loadSignals() {
       headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         jsonrpc: "2.0", id: 2, method: "tools/call",
-        params: { name: "list_recent_resets", arguments: { hours: 24, limit: 20 } }
+        params: { name: "list_recent_resets", arguments: { hours: 72, limit: 20 } }
       })
     });
     const data = await res.json();
