@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --stout-950: #100a06;
+      --stout-900: #191009;
+      --stout-800: #2b1a10;
+      --amber-450: #fbbf24;
+      --amber-500: #f59e0b;
+      --foam-50: #fffbf5;
+      --foam-200: #f3e8db;
+      --foam-300: #e7d5c5;
+      --hop-500: #22c55e;
+      --hop-400: #4ade80;
+      --sky-400: #38bdf8;
+      --sky-500: #0ea5e9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 380px;
+      min-height: 480px;
+      max-height: 600px;
+      background: var(--stout-950);
+      color: var(--foam-50);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-y: auto;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid rgba(255,247,237,0.08);
+      position: sticky;
+      top: 0;
+      background: var(--stout-950);
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      width: 26px; height: 26px;
+      border-radius: 6px;
+      background: linear-gradient(to bottom, rgba(245,158,11,0.2), #191009);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+
+    .brand-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--foam-50);
+    }
+
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--hop-500);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(0.85); }
+    }
+
+    /* Plan badge */
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .plan-badge.free {
+      background: rgba(243,232,219,0.08);
+      color: var(--foam-200);
+      border: 1px solid rgba(243,232,219,0.12);
+    }
+
+    .plan-badge.pro {
+      background: rgba(245,158,11,0.12);
+      color: var(--amber-450);
+      border: 1px solid rgba(245,158,11,0.3);
+    }
+
+    /* Signal list */
+    .signals {
+      padding: 8px 0;
+    }
+
+    .signal-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .signal-item:hover {
+      background: rgba(245,158,11,0.04);
+      border-left-color: var(--amber-500);
+    }
+
+    .signal-item.urgent {
+      border-left-color: var(--sky-500);
+      background: rgba(14,165,233,0.05);
+    }
+
+    .signal-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .signal-dot.confirmed { background: var(--amber-500); }
+    .signal-dot.signal { background: var(--sky-400); }
+
+    .signal-content { flex: 1; min-width: 0; }
+
+    .signal-product {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--foam-50);
+      margin-bottom: 2px;
+    }
+
+    .signal-summary {
+      font-size: 12px;
+      color: var(--foam-300);
+      opacity: 0.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 1.4;
+    }
+
+    .signal-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .signal-time { font-size: 11px; color: var(--foam-200); opacity: 0.4; }
+
+    .signal-badge {
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .signal-badge.official {
+      background: rgba(245,158,11,0.1);
+      color: var(--amber-450);
+      border: 1px solid rgba(245,158,11,0.2);
+    }
+
+    .signal-badge.signal-level {
+      background: rgba(56,189,248,0.1);
+      color: var(--sky-400);
+      border: 1px solid rgba(56,189,248,0.2);
+    }
+
+    /* Empty state */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--foam-200);
+      opacity: 0.5;
+    }
+
+    .empty-icon { font-size: 32px; margin-bottom: 12px; }
+    .empty-text { font-size: 13px; line-height: 1.6; }
+
+    /* Upgrade banner */
+    .upgrade {
+      margin: 8px 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.08), rgba(245,158,11,0.03));
+      border: 1px solid rgba(245,158,11,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .upgrade-text { font-size: 12px; color: var(--foam-200); line-height: 1.5; }
+    .upgrade-text strong { color: var(--amber-450); }
+
+    .upgrade-btn {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--amber-500);
+      color: var(--stout-950);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .upgrade-btn:hover { background: var(--amber-450); }
+
+    /* Footer */
+    .footer {
+      padding: 10px 16px;
+      border-top: 1px solid rgba(255,247,237,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-link {
+      font-size: 11px;
+      color: var(--foam-200);
+      opacity: 0.4;
+      text-decoration: none;
+    }
+
+    .footer-link:hover { color: var(--amber-450); opacity: 1; }
+
+    /* Loading */
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      gap: 16px;
+    }
+
+    .spinner {
+      width: 28px; height: 28px;
+      border: 3px solid rgba(245,158,11,0.2);
+      border-top-color: var(--amber-500);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* API key input */
+    .apikey-section {
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .apikey-section p { font-size: 13px; color: var(--foam-200); margin-bottom: 16px; line-height: 1.6; opacity: 0.7; }
+
+    .apikey-input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,247,237,0.12);
+      background: var(--stout-800);
+      color: var(--foam-50);
+      font-size: 13px;
+      font-family: monospace;
+      margin-bottom: 12px;
+    }
+
+    .apikey-input:focus { outline: none; border-color: var(--amber-500); }
+
+    .apikey-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      background: var(--amber-500);
+      color: var(--stout-950);
+      font-weight: 700;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .apikey-btn:hover { background: var(--amber-450); }
+
+    .error-msg { font-size: 12px; color: #f87171; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-icon">🍺</div>
+      <span class="brand-name">Reset Beer</span>
+      <div class="status-dot" id="statusDot"></div>
+    </div>
+    <span class="plan-badge free" id="planBadge">Free</span>
+  </div>
+
+  <!-- Main content (dynamic) -->
+  <div id="mainContent">
+    <!-- Default: loading -->
+    <div class="loading" id="loadingState">
+      <div class="spinner"></div>
+      <span style="font-size:13px;color:var(--foam-200);opacity:0.5;">Loading signals…</span>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a class="footer-link" href="https://reset.beer/en-US/live" target="_blank">Dashboard</a>
+    <a class="footer-link" href="https://reset.beer/en-US/subscribe" target="_blank">Upgrade</a>
+    <span class="footer-link" style="opacity:0.3;">reset.beer</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

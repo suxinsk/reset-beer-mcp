@@ -1,14 +1,29 @@
 {
-  "name": "@reset-beer/mcp",
+  "name": "reset-beer-mcp",
   "version": "1.0.0",
   "description": "MCP server for Reset Beer — AI quota reset tracking across 15+ products (Codex, Claude, Gemini, Cursor, etc.)",
   "main": "index.js",
   "type": "module",
-  "bin": { "reset-beer-mcp": "./index.js" },
+  "bin": {
+    "reset-beer-mcp": "./index.js"
+  },
   "keywords": [
-    "mcp", "model-context-protocol", "ai", "quota", "reset", "tracking",
-    "openai", "codex", "claude", "gemini", "cursor", "deepseek",
-    "rate-limit", "developer-tools", "notification", "alerts"
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "quota",
+    "reset",
+    "tracking",
+    "openai",
+    "codex",
+    "claude",
+    "gemini",
+    "cursor",
+    "deepseek",
+    "rate-limit",
+    "developer-tools",
+    "notification",
+    "alerts"
   ],
   "author": {
     "name": "Sunny Su",
@@ -23,5 +38,7 @@
   "bugs": {
     "url": "https://github.com/suxinsk/reset-beer-mcp/issues"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }
