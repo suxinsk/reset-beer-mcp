@@ -1,11 +1,11 @@
 {
   "name": "reset-beer-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server for Reset Beer — AI quota reset tracking across 15+ products (Codex, Claude, Gemini, Cursor, etc.)",
   "main": "index.js",
   "type": "module",
   "bin": {
-    "reset-beer-mcp": "./index.js"
+    "reset-beer-mcp": "index.js"
   },
   "keywords": [
     "mcp",
@@ -40,5 +40,6 @@
   },
   "engines": {
     "node": ">=18"
-  }
+  },
+  "mcpName": "io.github.suxinsk/reset-beer-mcp"
 }
