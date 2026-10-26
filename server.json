@@ -1,0 +1,41 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.suxinsk/reset-beer-mcp",
+  "title": "Reset Beer",
+  "description": "AI quota reset tracking across 15+ products. Query reset signals and price changes.",
+  "version": "1.0.1",
+  "homepage": "https://reset.beer",
+  "repository": {
+    "url": "https://github.com/suxinsk/reset-beer-mcp",
+    "source": "github"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sunny Su",
+      "url": "https://x.com/SunnySu_AI"
+    }
+  ],
+  "keywords": [
+    "ai",
+    "quota",
+    "reset",
+    "monitoring",
+    "openai",
+    "claude",
+    "gemini",
+    "developer-tools",
+    "notifications"
+  ],
+  "packages": [
+    {
+      "identifier": "reset-beer-mcp",
+      "version": "1.0.1",
+      "runtime_hint": "node",
+      "transport": {
+        "type": "stdio"
+      },
+      "registryType": "npm"
+    }
+  ]
+}
